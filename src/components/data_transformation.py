@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder,StandardScaler
+from sklearn.preprocessing import StandardScaler,OneHotEncoder
 
 from src.exception import CustomException
 from src.logger import logging
@@ -27,17 +27,18 @@ class DataTransformation:
     
     def get_data_transformer_object(self):
         try:
-            numerical_columns = ['writing_score', 'reading_score']
+            numerical_columns = ["writing_score", "reading_score"]
             categorical_columnns = [
-                'race_ethnicity',
-                'parental_level_of_education', 
-                'lunch', 
-                'test_preparation_course',
+                "gender",
+                "race_ethnicity",
+                "parental_level_of_education", 
+                "lunch", 
+                "test_preparation_course",
             ]
 
             num_pipeline = Pipeline(
-                 steps=[
-                ("imputer",SimpleImputer(strategy='median')),
+                steps=[ 
+                ("imputer",SimpleImputer(strategy="median")),
                 ("scaler",StandardScaler())
                 ]
             )
